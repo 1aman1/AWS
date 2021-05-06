@@ -1,0 +1,16 @@
+#### elb - classic load balancer - gen 1 <not recommended>, elbv2  - network/application load balancer - gen 2
+
+### gen 2 LBs
+aws elbv2 describe-load-balancers \
+    --region us-east-1
+
+### gen 1 LBs
+aws elb describe-load-balancers \
+    --region us-east-1 \ 
+    --max-items 1
+
+aws elbv2 describe-load-balancers  \
+    --region us-east-1 \
+    --max-items 1 \
+    --output text | awk '{ print $6}' | grep -i arn
+    
