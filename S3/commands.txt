@@ -1,7 +1,6 @@
-
 ## lists all the existing buckets.
 aws s3 ls
 
-## little extension to the previous command shows all the files/directories inside the bucket.
+## A little extension to the previous command and it shows all the files/directories inside the bucket.
 aws s3 ls s3://test-bucket
 
