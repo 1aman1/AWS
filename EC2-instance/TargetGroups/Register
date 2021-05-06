@@ -1,0 +1,12 @@
+register instance with port:
+
+aws elbv2 register-targets \
+    --target-group-arn arn:aws:elasticloadbalancing:us-east-1:752617210841:targetgroup/testtg/be42bd769bffea81 \
+    --region us-east-1 \
+    --targets Id=i-02441ac72596df8b4
+
+aws elbv2 register-targets \
+    --target-group-arn arn:aws:elasticloadbalancing:ap-south-1:274478751243:targetgroup/testtg/4b59b87f6e456fbb \
+    --targets Id=i-04bbef1215a6aa8de,Port=8080 \
+    --region ap-south-1 \
+    --profile ops

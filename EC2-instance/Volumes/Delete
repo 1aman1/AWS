@@ -1,0 +1,4 @@
+aws ec2 delete-volume \
+    --region  ap-south-1 \
+    --profile ops \
+    --volume-id vol-05d5ce40409e34077
