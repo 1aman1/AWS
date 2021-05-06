@@ -1,0 +1,2 @@
+aws ec2 describe-subnets \
+    --filters "Name=vpc-id,Values=vpc-3EXAMPLE"
