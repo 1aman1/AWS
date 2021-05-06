@@ -23,13 +23,3 @@ Case 3: aws s3 cp s3://test-bucket s3://new-bucket   // copies the content from 
 
 Case 4: aws s3 cp . .   // which really does not make any sense so just leave this one.
 
-
-### Few Addons
-
-## Use --summarize for sizing the bucket/object-directories
-aws s3 ls s3://test-bucket  --summarize | tail -3
-
-## For getting two different S3 buckets on same page, use sync
-aws s3 sync      s3://test-bucket  s3://new-bucket
-
-## try --human-readable
