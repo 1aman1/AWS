@@ -1,17 +1,18 @@
 S3 mentions every data to be uploaded as an object.
 Those objects can be uploaded to S3, copied from one S3 to another and can be download as well on requirement.
 
-Onboard by configuring aws cli credentials first and begin!
+Onboard by configuring aws cli credentials first, and then begin!
 
 
-## lists all the existing buckets.
+## Start by listing all the existing S3 buckets.
 aws s3 ls
 
 ## little extension to the previous command shows all the files/directories present inside the bucket.
 aws s3 ls s3://test-bucket
 
 ## copying objects to & fro.
-## With bucket and local in picture, the number of permutations comeout as four, and we will address each one of them.
+## With bucket and local storage in picture, the number of permutations comeout as four, and we will address each one of them.
+
 aws s3 cp <path-to-sourceobj> <target-path>
 
 Case 1: aws s3 cp s3://test-bucket .   // download the content from S3 to local.
@@ -25,7 +26,6 @@ Case 4: aws s3 cp . .   // which really does not make any sense so just leave th
 
 
 ### Addons
-
 
 ## Use --summarize for sizing the bucket/object-directories
 aws s3 ls s3://test-bucket  --summarize | tail -3
