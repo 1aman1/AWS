@@ -11,3 +11,7 @@ Use this command to configure the suitable IAM keys, the default way.
 
 For you want multiple keys to configure in same environment, keys can be given some name like 'ops' given below.
 ### aws configure --profile ops
+
+
+
+# Please note: All the features change shape time to time and with updates some commands might not work as expected when you read this.
