@@ -13,4 +13,3 @@ aws elbv2 describe-load-balancers  \
     --region us-east-1 \
     --max-items 1 \
     --output text | awk '{ print $6}' | grep -i arn
-    
