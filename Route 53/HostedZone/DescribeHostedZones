@@ -1,0 +1,4 @@
+# for any record related activity one requires a hosted-zone,
+# and while using cli, hosted-zone-id is required
+
+aws route53 list-hosted-zones
