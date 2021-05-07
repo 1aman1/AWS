@@ -3,6 +3,5 @@ aws elbv2 create-load-balancer \
     --scheme internal \
     --type network \
     --name app1lb \
-    --subnets priv-subnet-id \
-    --tags Key=ENV,Value=dev \
+    --subnets <priv-subnet-id> \
     --tags Key=purpose,Value=POC
