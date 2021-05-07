@@ -1,0 +1,19 @@
+# To check target instance(s) health via LB -> TG -> INSTANCEID -> INST-IP
+
+aws elbv2 describe-load-balancers --names cliPOC | grep -i arn | awk '{print $2}'
+
+
+# Take Load Balancer ARN from output for next command
+
+aws elbv2 describe-target-groups --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:274478******:loadbalancer/net/cliPOC/9ffdefce3b93bad9 | grep -i arn | awk '{ print $2 }'
+
+
+# Take Target Group ARN from output for next command
+
+aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-east-1:274478******:targetgroup/cliPOC/3b0476076b16fe41 --output text | awk '{ print $2}'
+6379
+i-088f12f4e3a4*****
+healthy
+6379
+i-0465469cf279*****
+healthy

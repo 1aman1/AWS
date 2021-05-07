@@ -1,0 +1,5 @@
+## Find private IP address for EC2 instance using it's instance-id
+
+## Find an pricate IP of an EC2 instance via known instance-Id
+
+aws ec2 describe-instances --instance-ids i-0465469cf279***** --output text | grep -i ipad
