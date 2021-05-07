@@ -1,0 +1,11 @@
+# All actions are limited to given hosted zone
+
+# List all the record sets created
+aws route53 list-resource-record-sets --hosted-zone-id Z1GD0YOM6***** --max-items 10
+
+
+# to get only CNAME Type records
+aws route53 list-resource-record-sets --hosted-zone-id Z1GD0YOM6***** --max-items 10 --query "ResourceRecordSets[?Type=='CNAME']"
+
+
+## remove --max-items to run a thorough query.
