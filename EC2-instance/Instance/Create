@@ -1,13 +1,13 @@
 SPIN a new EC2
 
-*enclosed with - ap-south-1 region | private subnet | 1 t2 micro | a keypair | one Security Group | tags
+*command encloses  a region | private subnet | 1 t2 micro | a keypair | one Security Group | tags | ami 
 
 aws ec2 run-instances \
     --count 1 \
-    --key-name KEYPAIRNAME \
-    --image-id ami-id \
+    --key-name <KEYPAIRNAME> \
+    --image-id <ami-id> \
     --instance-type t2.micro \
-    --subnet-id subnet-id \
-    --region ap-south-1 \
-    --security-group-ids sg-id \
+    --subnet-id <subnet-id> \
+    --region us-east-1 \
+    --security-group-ids <sg-id> \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=purpose,Value=cli testing}]' 'ResourceType=volume,Tags=[{Key=purpose2,Value=shortlived},{Key=purpose,Value=cli testing}]'

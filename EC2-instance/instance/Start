@@ -1,3 +1,0 @@
-aws ec2 start-instances \
-    --instance-ids i-00cb42ec28379fb6b \
-    --region ap-south-1
