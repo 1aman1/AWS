@@ -1,0 +1,3 @@
+aws ec2 start-instances \
+    --region us-east-1 \
+    --instance-ids i-00cb42ec283*****

@@ -1,4 +1,4 @@
 aws ec2 describe-volumes \
-    --region  ap-south-1 \
+    --region  us-east-1 \
     --filters Name=status,Values=available \
     --output text | grep -i VOL

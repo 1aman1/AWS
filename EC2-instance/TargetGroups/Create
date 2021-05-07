@@ -1,9 +1,7 @@
-
 aws elbv2 create-target-group \
     --name testtg \
     --protocol TCP \
     --port 80 \
-    --region ap-south-1 \
+    --region us-east-1 \
     --target-type instance \
-    --profile ops \
-    --vpc-id vpc-37a6745f
+    --vpc-id <vpc-Id>
