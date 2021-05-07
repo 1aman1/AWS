@@ -1,0 +1,3 @@
+## Find an EC2 instance via known private IP address
+
+aws ec2 describe-instances --region us-east-1 --output text | grep 10.10.1.0
