@@ -8,4 +8,8 @@ aws route53 list-resource-record-sets --hosted-zone-id Z1GD0YOM6***** --max-item
 aws route53 list-resource-record-sets --hosted-zone-id Z1GD0YOM6***** --max-items 10 --query "ResourceRecordSets[?Type=='CNAME']"
 
 
+# to get CNAME records, with only ResourceRecords.Value and Name
+aws route53 list-resource-record-sets --max-items 10 --hosted-zone-id Z1GD0YOM6*****  --query "ResourceRecordSets[?Type=='CNAME'].[ResourceRecords, Name][][]"
+
+
 ## remove --max-items to run a thorough query.
