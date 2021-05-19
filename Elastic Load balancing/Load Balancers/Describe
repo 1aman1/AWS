@@ -1,15 +1,27 @@
-#### elb - classic load balancer - gen 1 <not recommended>, elbv2  - network/application load balancer - gen 2
+#### elb - classic load balancer - GEN 1 <not recommended>, elbv2  - network/application load balancer - GEN 2
 
-### gen 2 LBs
-aws elbv2 describe-load-balancers \
-    --region us-east-1
+# NOTE : results are limited to one result only, remove --max-items to get full results.
 
-### gen 1 LBs
+### GEN 1 LBs
+
 aws elb describe-load-balancers \
     --region us-east-1 \ 
     --max-items 1
 
+# to get the DNS names only for CLB
+
+aws elb describe-load-balancers    \
+    --region ca-central-1 \
+    --max-items 1 | grep -i DNSName # > notepad.txt
+    
+    
+### GEN 2 LBs
+
+aws elbv2 describe-load-balancers \
+    --region us-east-1
+
+
 aws elbv2 describe-load-balancers  \
     --region us-east-1 \
     --max-items 1 \
-    --output text | awk '{ print $6}' | grep -i arn
+    --output text | awk '{ print $6}' | grep -i arn    
