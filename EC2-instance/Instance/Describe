@@ -4,8 +4,14 @@ aws ec2 describe-instances \
 
 
 # find Private IP via instance-ids
-PRIVATEIP=`aws ec2 describe-instances  --instance-ids i-00cb42ec283***** --region us-east-1 --query "Reservations[].Instances[].PrivateIpAddress"`
+aws ec2 describe-instances \
+    --region us-east-1 \
+    --instance-ids i-00cb42ec283***** \
+    --query "Reservations[].Instances[].PrivateIpAddress"`
 
 
 # find Tags assiciated via instance-ids
-TAGS=`aws ec2 describe-instances --instance-ids i-00cb42ec283***** --region us-east-1 --query "Reservations[].Instances[].Tags[]"`
+aws ec2 describe-instances \
+    --region us-east-1 \
+    --instance-ids i-00cb42ec283***** \
+    --query "Reservations[].Instances[].Tags[]"`
