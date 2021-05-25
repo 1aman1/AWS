@@ -1,6 +1,6 @@
 # AWS
 #### This repo shares the exploration done by me so far in AWS CLI for day to day requirements.
-I will tag the unsolved requirements as well, how is yet to be figured out.
+I have put the unsolved requirements as well in the todo file above.
 
 *In order to make better of potential out of cli, awscli should be installed first.*
 
