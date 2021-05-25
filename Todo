@@ -1,10 +1,11 @@
-#Pending
-
-1. Create record in an existing hosted zone.
-
+Pending
+a. Create record in an existing hosted zone.
+b. 
 
 #Done
 
-1.Find IP by InstanceId.
-2.Find InstanceId by IP.
-3.Check the health of the attached targets in LB.
+1. Find IP by InstanceId.
+2. Find InstanceId by IP.
+3. Check the health of the attached targets in LB.
+4. Use query to achieve point no.1 and no.2,  .
+5. Use query to find tags.
