@@ -1,0 +1,9 @@
+// users
+aws iam list-users --query "Users[].UserName[]" > usernames.txt
+
+
+// groups that a user is part of
+aws iam list-groups-for-user --user-name JACK
+
+// policies that are granted 
+aws iam list-attached-user-policies --user-name JACK
