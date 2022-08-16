@@ -1,0 +1,24 @@
+#!/bin/bash
+
+REGION=ap-south-1
+
+STATUS=$(aws ec2 describe-instance-status --output text --region $REGION --filters Name=instance-status.status,Values=impaired)
+
+if test -z "$STATUS"
+then
+        echo " No failed instances in $REGION region"
+else
+        ID=`aws ec2 describe-instance-status --output text --region $REGION --filters Name=instance-status.status,Values=impaired --query 'InstanceStatuses[].InstanceId'`
+        
+        printf '%s\n' "$ID" | while IFS= read -r line
+        do
+            IP_ID=`aws ec2 describe-instances --instance-ids $ID --region $REGION --query "Reservations[].Instances[].[PrivateIpAddress,InstanceId]" --output table | awk NR\>2 -`
+            DATE_TYPE=`aws ec2 describe-instances --instance-ids $ID --region $REGION --query "Reservations[].Instances[].[InstanceType,LaunchTime]" --output table | awk NR\>2 -`
+            TAGS=`aws ec2 describe-instances --instance-ids $ID --region $REGION --query "Reservations[].Instances[].Tags[]"  --output table | awk NR\>2 -`
+
+            echo "$IP_ID"
+            echo "$TAGS" 
+            echo "$DATE_TYPE"
+
+        done
+fi
