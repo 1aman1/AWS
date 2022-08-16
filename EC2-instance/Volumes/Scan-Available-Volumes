@@ -1,0 +1,12 @@
+#!/bin/bash
+
+REGION=ap-south-1
+
+AVAILABLE=$(aws ec2 describe-volumes --region  $REGION --filters Name=status,Values=available --output text)
+
+if [ "$AVAILABLE" != "" ]
+    then
+        aws ec2 describe-volumes --region  $REGION --filters Name=status,Values=available --output table --query "Volumes[].[VolumeId,CreateTime,Size]" | sed 's/              DescribeVolumes/Vol.Id \/ Creation Date \/ Size/'
+    else
+        echo "All the volumes are in-use"
+fi
