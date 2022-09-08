@@ -1,0 +1,43 @@
+#!/bin/bash
+
+REGION=us-east-1
+FILENAME=classic-lb-instance-audit.txt
+
+# gather the LB names to query further.
+
+LB_NAMES=`aws elb describe-load-balancers \
+    --profile ops  \
+    --region $REGION \
+    --output text \
+    --query "LoadBalancerDescriptions[].LoadBalancerName"`
+
+# for stats
+LB_COUNT=0
+
+for EACH_LB_NAMES in $LB_NAMES; do
+
+    echo ""
+    echo "#============================New Block=================================#"
+
+    aws elb describe-load-balancers \
+        --output table \
+        --profile ops \
+        --region $REGION \
+        --load-balancer-names $EACH_LB_NAMES \
+        --query "LoadBalancerDescriptions[].[LoadBalancerName,DNSName,CreatedTime,Scheme,Instances[].[InstanceId]]"
+
+    aws elb describe-load-balancers \
+        --output table \
+        --profile ops \
+        --region $REGION \
+        --load-balancer-names $EACH_LB_NAMES \
+        --query "LoadBalancerDescriptions[].ListenerDescriptions"
+
+    LB_COUNT=$(expr $LB_COUNT + 1)
+
+done > $FILENAME
+
+echo "Script listed $LB_COUNT resources"
+echo "Finished"
+echo "do cat $FILENAME"
+

@@ -1,0 +1,62 @@
+#!/bin/bash
+
+REGION=us-east-1
+FILENAME=net-appln-lb-audit.txt
+
+# gather lb arns to query further
+LB_ARN=`aws elbv2 describe-load-balancers \
+    --profile ops  \
+    --region $REGION \
+    --output text \
+    --query "LoadBalancers[].LoadBalancerArn"`
+
+LB_ARN=${LB_ARN::-4}
+
+#  for stat
+LB_COUNT=0
+
+for EACH_LB_ARN in $LB_ARN; do
+    
+    echo ""
+    echo "#============================New Block=================================#"
+
+    aws elbv2 describe-load-balancers \
+        --profile ops  \
+        --region $REGION \
+        --output table \
+        --load-balancer-arn $EACH_LB_ARN \
+        --query "LoadBalancers[].[DNSName,LoadBalancerName,CreatedTime,Scheme,Type]"
+
+    aws elbv2 describe-target-groups \
+        --profile ops  \
+        --region $REGION  \
+        --output table \
+        --load-balancer-arn $EACH_LB_ARN \
+        --query "TargetGroups[].[Port,TargetGroupName]"
+
+    
+    TG_ARN=`aws elbv2 describe-target-groups \
+        --profile ops  \
+        --output text \
+        --region $REGION  \
+        --load-balancer-arn $EACH_LB_ARN \
+        --query "TargetGroups[].TargetGroupArn"`
+
+    for EACH_TG_ARN in $TG_ARN; do
+
+        aws elbv2 describe-target-health \
+            --profile ops  \
+            --region $REGION \
+            --output table \
+            --target-group-arn $EACH_TG_ARN \
+            --query "TargetHealthDescriptions[].Target[].[Id,Port,State]"
+
+        done
+    
+    LB_COUNT=$(expr $LB_COUNT + 1)
+
+done > $FILENAME
+
+echo "Script listed $LB_COUNT resources"
+echo "Finished"
+echo "do cat $FILENAME"
