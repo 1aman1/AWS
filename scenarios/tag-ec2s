@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#  based on this IP, the details will be gathered to tag further
+IP=172.29.X.X
+
+PRIV_IP=`aws ec2 describe-instances \
+        --region us-east-1  \
+        --profile ops  \
+        --filter Name=private-ip-address,Values=$IP \
+        --query 'Reservations[].Instances[].InstanceId' --output text`
+
+aws ec2 create-tags \
+        --region us-east-1 \
+        --profile ops \
+        --resources $PRIV_IP \
+        --tags Key=env,Value=dev-qc   Key=project,Value=proj-code
